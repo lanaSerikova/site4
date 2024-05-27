@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="500" height="500" id="myCanvas"></canvas>
+<table>
+    <tr>
+      <td><input type="color" id="color"></td>
+    </tr>
+    <tr>
+        <td>введите K <br><input type="text" value="1" id="k" ></td>
+        <td>введите A <br><input type="text" value="0" id="a" ></td>
+        <td><input type="button" value="построить график y=k*x+a" id="btn1"></td>
+        <td>   <input type="button" value="очистить" id="btn"></td>
+    </tr>
+    <tr>
+        <td>введите a <br><input type="text" value="1" id="a1" </td>
+        <td>введите b <br><input type="text" value="0" id="b1" </td>
+        <td> введите c <br><input type="text" value="0" id="c1" </td>
+        <td><input type="button" value="a*x*x+b*x+c" id="btn2"></td>
+    </tr>
+      
+</table>
+
+
+
+ 
+</body>
+<script>
+
+    var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+  /*  ctx.beginPath();
+ctx.moveTo(0,0);
+ctx.lineTo(300,150);
+ctx.stroke();*/
+//циклом
+ctx.clearRect(0,0,500,500)
+function SystemKoord(){
+//вертикальные линии
+for(i =0 ;i<500;i++){
+    ctx.beginPath();
+ctx.moveTo(i*25,0);
+ctx.lineTo(i*25,500);
+ctx.strokeStyle='#72726d';
+ctx.stroke();
+}
+ctx.beginPath();
+ctx.moveTo(250,0);
+ctx.lineTo(250,500);
+ctx.strokeStyle='red';
+ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(0,250);
+ctx.lineTo(500,250);
+ctx.strokeStyle='red';
+ctx.stroke();
+//горизонтальные
+for(i =0 ;i<500;i++){
+    ctx.beginPath();
+ctx.moveTo(0,i*25);
+ctx.lineTo(500,i*25);
+ctx.strokeStyle='#72726d';
+ctx.stroke();
+}
+}
+SystemKoord();
+//рисуем график функции
+
+function createGrafic(color,pts){
+  ctx.strokeStyle = color;
+  ctx.beginPath();
+  pts.forEach((p, i) => i ? ctx.lineTo(...p) : ctx.moveTo(...p));
+  ctx.stroke();
+}
+
+
+
+//for(let x = -cnvs.width/2; x<cnvs.width/2; x+=5) {
+ //  pts.push([cnvs.width/2+x, cnvs.height/2 - y(x/scale)*scale]);
+//}
+//очищение поля
+btn.onclick=function(){
+    ctx.clearRect(0,0,500,500)
+    SystemKoord();
+}
+btn1.onclick=function(){
+    pts=[];
+let x, y, dx=250,dy=250;
+let k=parseFloat( document.getElementById('k').value);
+let a=parseFloat( document.getElementById('a').value);
+console.log(k,a);
+//y=x
+//y=k*x+a
+for(x=-dx;x<dx;x++){
+    pts.push([x+dx,-k*x+a+dx])
+}
+let color=document.getElementById('color').value;
+console.log(color)
+    createGrafic("blue",pts);
+}
+
+btn2.onclick=function(){
+    pts=[];
+let x, y, dx=250,dy=250;
+let a1=parseFloat( document.getElementById('a1').value);
+let b1=parseFloat( document.getElementById('b1').value);
+let c1=parseFloat( document.getElementById('c1').value);
+console.log(a1,b1,c1);
+//y=x
+//y=k*x+a
+for(x=-dx;x<dx;x++){
+    pts.push([x+dx,-a1*x*x+b1*x +c1+dx])
+}
+    createGrafic("green",pts); 
+}
+
+
+
+</script>
+</html>

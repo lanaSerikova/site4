@@ -1,0 +1,71 @@
+body{
+    background: linear-gradient(45deg,
+     #aab8bead,
+      #f19999b5,
+      #93378c);
+      height: 100vh;
+      margin: 0;
+}
+div#container {
+    width: 500px;
+    margin: 100px auto;
+    
+}
+div#testQwest {
+    background: #b7c48f;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    
+}
+div#testQwest h2 {
+    text-align: center;
+    color: #464340;
+ padding: 20px 0;
+ margin: 0;
+}
+div#listAnswer {
+    background: white;
+  
+}
+
+div#listAnswer h2,
+ div#listAnswer h3, 
+   div#listAnswer p.p{
+text-align: center;
+margin: 9px 0;
+}
+
+
+label.answ {
+    display: block;
+    padding: 10px 0 10px 20px;
+    font-size: 27px;
+}
+input#testRez {
+    width: 100%;
+    font-size: 30px;
+    font-weight: 700;
+    background: #93378c;
+    border: none;
+    display: block;
+    padding: 10px 0;
+}
+
+div#listAnswer h2 {
+     text-transform: uppercase;
+    color: #eee;
+    text-shadow: 1px 1px 1px #123;
+    font-weight: 900;
+    font-size: 32px;
+  
+}
+div#listAnswer  h3, p.p {
+    letter-spacing: 5px;
+    font-size: 26px;
+    margin: 0;
+}
+p.p {
+    margin-top: 10px;
+}
+ 
+

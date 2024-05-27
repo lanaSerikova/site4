@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра-пазл</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+    body {
+        margin: 0;
+        background-color: #123;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="goroda.html">Города</a></li>
+                <li><a href="pazl.html">Игра-пазл</a></li>
+                <li><a href="#">О нас</a></li>
+            </ul>
+            <!-- <img src="img/menu.png" alt=""> -->
+            <div id="menu">
+                <div></div>
+            </div>
+        </nav>
+        <h1>Собери игра-пазл</h1>
+        <div id="zone1"> </div>
+        <h2>Oбласть для перетягивания</h2>
+        <div id="cont">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+        <h2>Игра найди соответствие</h2>
+        <table>
+            <tr>
+                <td colspan="3"></td>
+
+            </tr>
+            <tr id="zone2">
+                <td><img src="img/gomel1.jpg" id="r1"></td>
+                <td><img src="img/речица.jpg" id="r2"></td>
+
+            </tr>
+            <tr id="cont2">
+                <td colspan="3">
+                    <h2>Перетяните картинку областного центра</h2>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+
+
+
+
+    //======================================
+    const imgArr = [2, 8, 5, 4, 3, 6, 9, 1, 7]
+    for (let i = 0; i < imgArr.length; i++) {
+        zone1.innerHTML +=
+            `<img src=img/images/fon_0${imgArr[i]}.gif
+             draggable=true
+             id=ris${i}>`
+
+
+    }
+    const imgPazl = document.querySelectorAll('#zone1 img')
+
+
+
+    function dragStart(e) {
+        e.dataTransfer.setData('id', e.target.id)
+        console.log(e.target.id)
+    }
+    function dragOver(e) {
+        if (e.target.tagName === 'IMG') return;
+        e.preventDefault();
+    }
+    Array.from(imgPazl)
+        .forEach((el) => {
+            el.addEventListener('dragstart', dragStart)
+
+        })
+    //====================
+    zone1.ondragover = function (e) {
+        e.preventDefault();
+
+    }
+    cont.ondragover = function (e) {
+        e.preventDefault();
+    }
+    zone1.ondrop = function (e) {
+        e.preventDefault()
+        if (e.target.tagName === 'IMG') return;
+        let imageId = e.dataTransfer.getData('id')
+        console.log(imageId)
+        e.target.appendChild(document.getElementById(imageId))
+    }
+
+
+    const cells = document.getElementsByClassName('col')
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].addEventListener('dragover', dragOver)
+        cells[i].addEventListener('drop', Drop)
+    }
+
+    function Drop(e) {
+        e.preventDefault();
+        if (e.target.tagName === 'IMG') return;
+        e.dataTransfer
+            .setData('col', e.target.dataset.col)
+        //let countCol = e.target.dataset.col;
+        let imageId = e.dataTransfer.getData('id')
+        console.log(imageId)
+        event.target.appendChild(document.getElementById(imageId))
+        const imgPazl0 = document.querySelectorAll('#zone1 img')
+        if (imgPazl0.length == 1) {
+            let h = zone1.clientHeight;
+            console.log(h)
+            zone1.style.height = h + 'px';
+        }
+        const imgS = document.querySelectorAll('.col img')
+        console.log(imgS.length)
+        if (imgS.length == 9
+            && imgS[0].id == `ris7`
+            && imgS[1].id == `ris0`
+            && imgS[2].id == `ris4`
+            && imgS[3].id == `ris3`
+            && imgS[4].id == `ris2`
+            && imgS[5].id == `ris5`
+            && imgS[6].id == `ris8`
+            && imgS[7].id == `ris1`
+            && imgS[8].id == `ris6`
+
+        ) {
+            alert("молодец!!! \n Поздравляем!! ")
+        }
+
+
+    }
+
+    //===========2 задание===================
+    zone2.ondragover = function (e) {
+        e.preventDefault();
+
+    }
+    cont2.ondragover = function (e) {
+        e.preventDefault();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
